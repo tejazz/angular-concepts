@@ -12,7 +12,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 # Steps to set up precache and service worker in your Angular-4 app
 
 1. Add the following script code just before the end of the body section in index.html
-   
+   <pre>
     <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
@@ -21,20 +21,20 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
         console.log('Service Worker registration failed: ', err);
       });
     }
-    </script>
+    </script></pre>
     
 2. Include service-worker.js reference in the assets portion in .angular-cli.json
-
+    <pre>
     "assets": [
       "assets",
       "favicon.ico",
       "service-worker.js"
-    ],
+    ],</pre>
     
 3. Create a service-worker.js file in the src directory
 4. Run <strong>npm install --save-dev sw-precache</strong> to install and save sw-precache library
 5. Create sw-precache-config.js file in the root directory and include the following code
-
+  <pre>
    module.exports = {
       navigateFallback: '/index.html',
       stripPrefix: 'dist',
@@ -44,11 +44,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
         'dist/**.js',
         'dist/**.css'
       ]
-   };
+   };</pre>
    
 6. Run <strong>npm install -g live-server</strong> to install and save the live-server configuration
 7. Add the following script commands in package.json file  
-
+    <pre>
     "scripts": {
         "start": "ng serve",
         "lint": "tslint \"src/**/*.ts\"",
@@ -57,6 +57,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
         "e2e": "protractor",
         "sw": "sw-precache --root=dist --config=sw-precache-config.js",
         "static-serve": "cd dist && live-server --port=4200 --host=localhost --entry-file=/index.html"
-      }
+      }</pre>
 
 8. Follow the steps mentioned above to run the app
