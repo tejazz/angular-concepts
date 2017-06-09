@@ -4,10 +4,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Run the following commands to run the app
 
-1. npm install: Installs the concerned node modules
-2. ng build --aot --prod: Builds the dist file with a service-worker file included
-3. npm run sw: Generates precaching code for service-worker.js in the build folder
-4. npm run static-serve: Runs the app on a live server since the service worker and precaching cannot be tested on deployment server 
+1. <strong>npm install</strong>: Installs the concerned node modules
+2. <strong>ng build --aot --prod</strong>: Builds the dist file with a service-worker file included
+3. <strong>npm run sw</strong>: Generates precaching code for service-worker.js in the build folder
+4. <strong>npm run static-serve</strong>: Runs the app on a live server since the service worker and precaching cannot be tested on deployment server 
 
 # Steps to set up precache and service worker in your Angular-4 app
 
