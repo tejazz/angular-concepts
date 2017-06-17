@@ -5,18 +5,10 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import * as firebase from 'firebase';
 import { AppComponent } from './app.component';
+import { firebaseConfig } from './../environments/firebase.config';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-// Firebase Web App Configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyD6Vk_x7V3EycReVZoWARz9JtPM2ArWSXA',
-  authDomain: 'my-pwa-first-notification.firebaseapp.com',
-  databaseURL: 'https://my-pwa-first-notification.firebaseio.com',
-  projectId: 'my-pwa-first-notification',
-  storageBucket: 'my-pwa-first-notification.appspot.com',
-  messagingSenderId: '1019013830321'
-};
-
-// Initialize Firebase App
+//Initialize Firebase App
 firebase.initializeApp(firebaseConfig);
 
 @NgModule({
@@ -27,7 +19,8 @@ firebase.initializeApp(firebaseConfig);
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule // imports firebase database
   ],
   providers: [],
   bootstrap: [AppComponent]
