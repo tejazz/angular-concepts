@@ -1,12 +1,19 @@
 <h1>Push Notifications using Firebase</h1>
 
 <!--Button to obtain the device token ID generated-->
-<button (click)="showToken()">Retrieve Token</button>
+<!--<button (click)="showToken()">Retrieve Token</button>-->
 <br>
 <!--Textarea that contains the generated token-->
-<textarea placeholder="Token instance will populate here">{{token}}</textarea>
+<!--<textarea placeholder="Token instance will populate here">{{token}}</textarea>-->
+<h2>Current Token:</h2>
+{{token}}
+<br>
 <br>
 
+<!--Button to generate a push-->
+<button (click)="generatePush()">Generate Push</button>
+<br>
+<!--Button to retreive data from database-->
 <button (click)="getDataFromFb()">Get Data from Firebase</button>
 <br>
 <h2>Token List</h2>

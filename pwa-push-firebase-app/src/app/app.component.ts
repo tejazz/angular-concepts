@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
+// Providers
+import { PushService } from './push.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,14 +15,24 @@ export class AppComponent implements OnInit {
 
   // Declare the variables used
   messaging: any
-  token: any
+  token: any  // Stores the current token ID instance generated
   items: FirebaseListObservable<any[]>
-  itemsDisplay: FirebaseListObservable<any[]>
-  itemsArr: any = []
+  itemsDisplay: FirebaseListObservable<any[]> // List observable for template view (Optional. items itself can be used)
+  itemsArr: any[] // Stores the token IDs retrieved from the firebase database 
   hideToken: boolean = false
 
-  constructor(public db: AngularFireDatabase) {
+  // Notificayion object
+  pushData: any = {
+    'notification': {
+      "title": "Background Message Title",
+      "body": "Background Message Body"
+    },
+    "to": ""
+  }
 
+  constructor(public db: AngularFireDatabase, private pushService: PushService) {
+
+    // Creates a Firebase List Observable and calls the data in it
     this.itemsDisplay = db.list('/items')
 
     // Declaring the property value of messaging
@@ -35,52 +48,9 @@ export class AppComponent implements OnInit {
           console.log('Unable to retrieve refreshed token ', err);
         });
     });
-  }
 
-  // Function to display the token IDs
-  showToken() {
-    const self = this
-    this.items = this.db.list('/items')
-    // Get Instance ID token. Initially this makes a network call, once retrieved subsequent calls to getToken will return from cache.
-    this.messaging.getToken()
-      .then(function (currentToken) {
-        if (currentToken) {
-          self.token = currentToken
-          if (self.checkToken(self.token) === 0) {
-            self.items.push({ tokenID: currentToken })
-          } else {
-            console.log("User is already subscribed")
-          }
-          console.log("currentToken: ", currentToken);
-          console.log("Stored token: ", self.token);
-        } else {
-          // Show permission request.
-          console.log('No Instance ID token available. Request permission to generate one.');
-        }
-      })
-      .catch(function (err) {
-        console.log('An error occurred while retrieving token.', err);
-      });
-  }
-
-  // Check for duplicates in token subscription
-  checkToken(token) {
-    console.log("Inside check token function")
-    let counter: number = 0
-    for (var i = 0; i < this.itemsArr.length; i++) {
-      if (this.itemsArr[i] == token) {
-        counter++
-      }
-    }
-    console.log("Counter value", counter)
-    return counter
-  }
-
-  // Function to get the data from Firebase Database
-  getDataFromFb() {
-    this.hideToken = true
-    this.itemsArr = []
-    console.log("Inside get data functions")
+    // Obtaining the firebase data and retrieving token ID values separately
+    this.itemsArr = []  // Reinitialize the array to prevent data duplication
     this.items = this.db.list('/items', { preserveSnapshot: true });
     this.items.subscribe(snapshots => {
       snapshots.forEach(snapshot => {
@@ -88,20 +58,76 @@ export class AppComponent implements OnInit {
         this.itemsArr.push(snapshot.val().tokenID);
       });
     });
+    // console.log(this.itemsArr)
 
-    console.log(this.itemsArr)
-    // this.items.forEach(element => {
-    //   this.itemsArr.push(element)
-    // });
   }
 
+  // Check for duplicates in token subscription
+  checkToken(token, arr) {
+    console.log("Inside check token function")
+    console.log(arr)
+    console.log(token)
+    let counter: number = 0
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] === token) {
+        counter++
+      }
+    }
+    console.log("Counter value", counter)
+    return counter
+  }
+
+  // Generate Push through an event
+  generatePush() {
+    console.log("Inside push function")
+    console.log(this.pushData.to)
+    if (this.pushData.to === "") {
+      console.log("No token available")
+      return
+    }
+    this.pushService.generatePush(this.pushData)
+      .subscribe(data => { console.log("Succesfully Posted") }, err => console.log(err))
+  }
+
+  // Function to get the data from Firebase Database
+  getDataFromFb() {
+    this.hideToken = true
+  }
 
   ngOnInit() {
     // Prompt user to grant permission for notifications on loading components
     const self = this
+    this.items = this.db.list('/items')
     this.messaging.requestPermission()
       .then(function () {
         console.log('Notification permission granted.');
+        self.messaging.getToken()
+          .then(function (currentToken) {
+            if (currentToken) {
+              self.token = currentToken
+              self.pushData.to = self.token
+              console.log(self.pushData.to)
+
+              // Set a timeout so as to enable all the data to be loaded
+              setTimeout(() => {
+                if (self.checkToken(self.token, self.itemsArr) === 0) {
+                  console.log("Push occurrence")
+                  self.items.push({ tokenID: currentToken })
+                } else {
+                  console.log("User is already subscribed")
+                }
+              }, 6500)
+              // Displays the current token data
+              console.log("currentToken: ", currentToken);
+              console.log("Stored token: ", self.token);
+            } else {
+              // Show permission request.
+              console.log('No Instance ID token available. Request permission to generate one.');
+            }
+          })
+          .catch(function (err) {
+            console.log('An error occurred while retrieving token.', err);
+          });
       })
       .catch(function (err) {
         console.log('Unable to get permission to notify. ', err);

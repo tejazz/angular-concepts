@@ -7,6 +7,7 @@ import * as firebase from 'firebase';
 import { AppComponent } from './app.component';
 import { firebaseConfig } from './../environments/firebase.config';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { PushService } from './push.service';
 
 //Initialize Firebase App
 firebase.initializeApp(firebaseConfig);
@@ -22,7 +23,7 @@ firebase.initializeApp(firebaseConfig);
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule // imports firebase database
   ],
-  providers: [],
+  providers: [PushService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
