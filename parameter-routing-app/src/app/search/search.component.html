@@ -1,0 +1,5 @@
+<!--Displaying the list of books retreived-->
+<h3>List of Books</h3>
+<ul *ngFor="let item of book">
+  <li [routerLink]="['/detail', item.isbn]">{{item.title}}</li>
+</ul>
