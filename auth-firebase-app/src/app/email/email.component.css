@@ -1,0 +1,17 @@
+.container {
+    margin-top: 10%;
+}
+
+.email {
+    margin: 0 auto;
+    background: whitesmoke;
+    padding: 1.5em;
+}
+
+.input-data {
+    margin: 0 auto;
+}
+
+h4 {
+    text-align: center;
+}

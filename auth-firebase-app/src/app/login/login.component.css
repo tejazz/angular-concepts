@@ -1,0 +1,34 @@
+.container {
+    margin-top: 10%;
+}
+
+.login {
+    margin: auto;
+    background: whitesmoke;
+    padding: 1.5em;
+}
+
+h2 {
+    margin-top: 0.5em;
+}
+
+h2, h4, p {
+    text-align: center;
+}
+
+.button-group {
+    margin: 0 auto;
+}
+
+.btn {
+    width: 100%;
+    margin: 0.2em;
+}
+
+.google {
+    background: red;
+}
+
+.google:active {
+    background: crimson;
+}

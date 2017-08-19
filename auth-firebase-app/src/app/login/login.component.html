@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="login col-lg-8 col-sm-8 col-12">
+
+      <h2>Authentication Firebase App</h2>
+      <br/><br/>
+      <h4>Login</h4>
+      <br/>
+      <div class="col-lg-8 col-sm-8 col-12 button-group">
+        <button class="btn btn-primary" (click)="loginFacebook()">Login with Facebook</button><br/>
+        <button class="btn btn-primary google" (click)="loginGoogle()">Login with Google</button><br/>
+        <button class="btn btn-default" [routerLink]="['email']">Login with Email</button><br/>
+      </div>
+      <br/>
+
+      <p>Not registered? <strong>Sign Up</strong></p>
+      <br/>
+
+    </div>
+  </div>
+</div>
