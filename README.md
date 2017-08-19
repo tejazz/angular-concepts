@@ -5,3 +5,4 @@ A library of Angular 4 (Angular 2+ as most people fondly call it) concepts and i
 1. <strong>precache-sw-app: </strong>Precaching data from app using Service Workers
 2. <strong>pwa-push-firebase-app: </strong>Web-based Push Notifications, functional on all platforms, using Firebase Cloud Messaging
 3. <strong>parameter-routing-app: </strong>ID based routing to navigate to parameter-specific urls
+4. <strong>auth-firebase-app: </strong>Angular authentication app using AngularFire2 4.0
