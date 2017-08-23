@@ -16,6 +16,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { AuthService } from "./auth.service";
 import { AuthGuard } from "./auth.guard";
+import { SignupComponent } from './signup/signup.component';
 
 export function checkState(component: HomeComponent) {
   if(component.loggedOut) {
@@ -32,7 +33,8 @@ export function checkState(component: HomeComponent) {
     LoginComponent,
     EmailComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { EmailComponent } from "./email/email.component";
 import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { AuthGuard } from "./auth.guard";
+import { SignupComponent } from "./signup/signup.component";
 
 // Defining the different routes for the app
 const appRoutes: Routes = [
@@ -16,6 +17,10 @@ const appRoutes: Routes = [
     {
         path: 'login/email',
         component: EmailComponent
+    },
+    {
+        path: 'login/signup',
+        component: SignupComponent
     },
     {
         path: '',
@@ -38,4 +43,4 @@ const appRoutes: Routes = [
     imports: [RouterModule.forRoot(appRoutes)],
     exports: [RouterModule]
 })
-export class AppRoutingModule {} 
+export class AppRoutingModule { } 

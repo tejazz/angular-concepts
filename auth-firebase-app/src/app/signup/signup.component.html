@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="signup col-lg-8 col-sm-8 col-12">
+
+      <h4>New User Sign Up</h4>
+      <br/>
+
+      <div class="col-lg-8 col-sm-8 col-12 input-data">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+          <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" name="email" class="form-control" id="email" required ngModel>
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" name="pwd" class="form-control" id="pwd" required ngModel>
+          </div>
+          <div class="form-group">
+            <label for="confirmPwd">Confirm Password:</label>
+            <input type="password" name="confirmPwd" class="form-control" id="confirmPwd" required ngModel>
+            <span class="confirmError" *ngIf="errorVal">Passwords don't match</span>
+          </div>
+          <input type="submit" class="btn btn-default" value="Register" />
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

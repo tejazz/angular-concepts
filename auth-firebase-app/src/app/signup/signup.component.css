@@ -1,0 +1,22 @@
+.container {
+    margin-top: 10%;
+}
+
+.signup {
+    margin: 0 auto;
+    background: whitesmoke;
+    padding: 1.5em;
+}
+
+.input-data {
+    margin: 0 auto;
+}
+
+h4 {
+    text-align: center;
+}
+
+.confirmError {
+    font-weight: bold;
+    color: red;
+}

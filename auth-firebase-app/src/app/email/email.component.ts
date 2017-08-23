@@ -19,11 +19,11 @@ export class EmailComponent implements OnInit {
     console.log(value);
     this.auth.loginWithEmail(value.email, value.pwd)
       .then((success) => {
-        console.log("Successfully logged out");
+        console.log("Successfully logged in with email and password");
         this.router.navigate(['home']);
       })
       .catch((error) => {
-        console.log("Error logging out.");
+        console.log("Error logging in.");
         alert("Error. Error message: " + error);
       });
   }

@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.auth.getAuthState().subscribe((user) => {
       this.user = user;
-    })
+    });
   }
 
   // Initiates sign out operation from the app

@@ -12,11 +12,7 @@ export class AuthService {
     this.authState = this.afAuth.authState;
     this.authState.subscribe(user => {
       console.log(user);
-      if (user) {
-        this.currentUser = user;
-      } else {
-        this.currentUser = null;
-      }
+      this.currentUser = user; 
     });
   }
 
@@ -27,7 +23,13 @@ export class AuthService {
 
   // Returns the current value of the logged in user
   getCurrentUser() {
+    console.log(this.currentUser);
     return this.currentUser;
+  }
+
+  // Create new user registration
+  createUser(email, password) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
   // To enable login through google account

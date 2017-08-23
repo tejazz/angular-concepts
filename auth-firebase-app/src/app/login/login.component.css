@@ -32,3 +32,7 @@ h2, h4, p {
 .google:active {
     background: crimson;
 }
+
+.signup:hover {
+    border-bottom: solid black;
+}
