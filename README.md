@@ -8,5 +8,5 @@ Precaching data from app using Service Workers
 Web-based Push Notifications, functional on all platforms, using Firebase Cloud Messaging
 3. <strong>parameter-routing-app</strong><br/>
 ID based routing to navigate to parameter-specific urls
-4. <strong>auth-firebase-app: </strong><br/>
+4. <strong>auth-firebase-app</strong><br/>
 Angular authentication app using AngularFire2 4.0
