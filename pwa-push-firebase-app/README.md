@@ -1,4 +1,4 @@
-# PWA-Push-Firebase-App
+# Progressive Web Push Firebase App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1. This project illustrates the implementation of push notifications for all platforms using Firebase Cloud Messaging system along with its database and server.
 
@@ -57,7 +57,7 @@ Token Generation, Firebase Database Operation and Token Duplication Check
 7. Create a <b>firebase.config.ts</b> file in the /src/environments/ directory and populate the keys mentioned with your respective project configuration values
     <pre>
     export const firebaseConfig = {
-        apiKey: 'AIzaSyD6Vk_x7V3EycReVZoWARz9JtPM2ArWSXA',
+        apiKey: '<API Key>',
         authDomain: 'my-pwa-first-notification.firebaseapp.com',
         databaseURL: 'https://my-pwa-first-notification.firebaseio.com',
         projectId: 'my-pwa-first-notification',
